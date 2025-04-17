@@ -10,6 +10,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Database
 const db = require('./models');
@@ -33,10 +34,10 @@ app.listen(PORT, () => {
 });
 
 // Sync database (in development)
-db.sequelize.sync()
-  .then(() => {
-    console.log('Database synced');
-  })
-  .catch((err) => {
-    console.log('Failed to sync database: ' + err.message);
-  });
+// db.sequelize.sync()
+//   .then(() => {
+//     console.log('Database synced');
+//   })
+//   .catch((err) => {
+//     console.log('Failed to sync database: ' + err.message);
+//   });

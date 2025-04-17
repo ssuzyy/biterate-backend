@@ -1,24 +1,35 @@
 const express = require('express');
 const router = express.Router();
 const badgeController = require('../controllers/badge.controller.js');
-const { verifyToken } = require('../middleware/auth.middleware');
 
-// Get all badges
+// Create a new Badge
+router.post('/', badgeController.create);
+
+// Initialize default badges
+router.post('/initialize', badgeController.initializeDefaultBadges);
+
+// Retrieve all Badges
 router.get('/', badgeController.findAll);
 
-// Get a single badge by id
+// Retrieve a single Badge with id
 router.get('/:id', badgeController.findOne);
 
-// Create a new badge (admin only)
-router.post('/', verifyToken, badgeController.create);
+// Update a Badge with id
+router.put('/:id', badgeController.update);
 
-// Update a badge (admin only)
-router.put('/:id', verifyToken, badgeController.update);
+// Delete a Badge with id
+router.delete('/:id', badgeController.delete);
 
-// Assign badge to user (admin or system only)
-router.post('/assign', verifyToken, badgeController.assignBadge);
+// Get all users who have earned a specific badge
+router.get('/:id/users', badgeController.getBadgeUsers);
 
-// Check if user qualifies for any badges
-router.post('/check', verifyToken, badgeController.checkUserBadges);
+// Assign a badge to a user
+router.post('/:id/assign', badgeController.assignBadge);
+
+// Remove a badge from a user
+router.delete('/:badgeId/users/:userId', badgeController.removeBadge);
+
+// Check and award badges based on user activity
+router.post('/check/:id', badgeController.checkAndAwardBadges);
 
 module.exports = router;

@@ -34,17 +34,18 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-// Set port and start server
+// Set port
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
 
-// Sync database (in development)
-// db.sequelize.sync()
-//   .then(() => {
-//     console.log('Database synced');
-//   })
-//   .catch((err) => {
-//     console.log('Failed to sync database: ' + err.message);
-//   });
+// Sync database, then start server
+db.sequelize.sync({ force: false }) // use force: true ONLY if you want to drop and recreate all tables each time
+  .then(() => {
+    console.log('Database synced');
+
+    app.listen(PORT, () => {
+      console.log(`🚀 Server is running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Failed to sync database:', err.message);
+  });

@@ -8,7 +8,10 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true // For cookies/auth
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,9 +25,13 @@ app.use('/api/products', require('./routes/product.routes'));
 app.use('/api/reviews', require('./routes/review.routes'));
 app.use('/api/badges', require('./routes/badge.routes'));
 
-// Simple route for testing
+// Simple routes for testing
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to BiteRate API' });
+});
+
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok' });
 });
 
 // Set port and start server

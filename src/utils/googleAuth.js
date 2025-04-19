@@ -1,18 +1,22 @@
 const { OAuth2Client } = require('google-auth-library');
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 async function verifyGoogleToken(token) {
   try {
+    console.log('Starting token verification...');
+    const clientId = process.env.GOOGLE_CLIENT_ID;
+    console.log('Using CLIENT_ID:', clientId);
+    
+    const client = new OAuth2Client(clientId);
     const ticket = await client.verifyIdToken({
       idToken: token,
-      audience: process.env.GOOGLE_CLIENT_ID,
+      audience: clientId
     });
-    const payload = ticket.getPayload();
-    return payload;
+    
+    return ticket.getPayload();
   } catch (error) {
-    console.error('Error verifying Google token: ', error);
-    throw new Error('Google token verification failed');
+    console.error('Token verification error details:', error);
+    throw error;
   }
 }
 
-module.exports = { verifyGoogleToken }; // Export as an object with the function as a property
+export default verifyGoogleToken;

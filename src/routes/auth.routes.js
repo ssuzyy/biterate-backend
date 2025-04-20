@@ -1,11 +1,25 @@
+// src/routes/auth.routes.js
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/auth.controller.js');
+const { verifyToken } = require('../middleware/auth.middleware');
+const controller = require('../controllers/auth.controller');
 
-// Google OAuth login/register
-router.post('/google-login', authController.googleAuth);
+// Add CORS headers middleware at the router level
+router.use(function(req, res, next) {
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Authorization, Origin, Content-Type, Accept"
+  );
+  next();
+});
 
-// Check user authentication status
-router.get('/status', authController.checkAuthStatus);
+// Google login route
+router.post('/google-login', controller.googleLogin);
+
+// Create test user (you might want to add admin middleware here)
+router.post('/create-test-user', controller.createTestUser);
+
+// Get user data (protected route)
+router.get('/user', verifyToken, controller.getUserData);
 
 module.exports = router;

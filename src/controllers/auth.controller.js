@@ -1,70 +1,113 @@
+const admin = require('../config/firebaseAdmin');
 const db = require('../models');
 const User = db.User;
-const { verifyGoogleToken } = require('../utils/googleAuth');
 
-// Google OAuth authentication
-exports.googleAuth = async (req, res) => {
+exports.googleLogin = async (req, res) => {
   try {
     const { token } = req.body;
     
     if (!token) {
-      return res.status(400).json({ success: false, message: "Token is required" });
+      return res.status(400).json({ message: 'No token provided' });
     }
+
+    // Verify the Firebase ID token
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    const { uid, email } = decodedToken;
     
-    // Verify Google token
-    const payload = await verifyGoogleToken(token);
-    
-    if (!payload) {
-      return res.status(401).json({ success: false, message: "Invalid token" });
-    }
-    
-    // Extract user data from payload
-    const { email, name, picture } = payload;
-    
-    // Check if user already exists
-    let user = await User.findOne({ where: { email } });
-    
-    if (!user) {
-      // Create new user if doesn't exist
-      user = await User.create({
+    // Find or create user in your database
+    let [user, created] = await User.findOrCreate({
+      where: { email },
+      defaults: {
         email,
-        // Store additional user data as needed
-        // No password needed for OAuth users
-      });
+        firebaseUid: uid,
+        joinDate: new Date(),
+        userRating: 0
+      }
+    });
+
+    // If user exists but doesn't have firebaseUid, update it
+    if (!created && !user.firebaseUid) {
+      user.firebaseUid = uid;
+      await user.save();
     }
-    
-    // Generate session token or JWT (implement your own auth mechanism)
-    // For example:
-    // const token = jwt.sign({ id: user.userID }, process.env.JWT_SECRET, { expiresIn: '24h' });
-    
-    res.status(200).json({
-      success: true,
-      message: "Authentication successful",
-      user: {
-        id: user.userID,
-        email: user.email,
-        joinDate: user.joinDate,
-        userRating: user.userRating
-      },
-      // token: token // Uncomment when we implement JWT
+
+    // Create session data to return to client
+    const userData = {
+      id: user.userID,
+      email: user.email,
+      joinDate: user.joinDate,
+      userRating: user.userRating
+    };
+
+    return res.status(200).json({
+      ...userData,
+      token // Return the token so it can be stored client-side
     });
   } catch (error) {
-    console.error("Google auth error:", error);
-    res.status(500).json({ success: false, message: "Authentication failed", error: error.message });
+    console.error('Login error:', error);
+    return res.status(500).json({ message: 'Authentication failed', error: error.message });
   }
 };
 
-// Check authentication status
-exports.checkAuthStatus = async (req, res) => {
+// Create a test user (admin use only)
+exports.createTestUser = async (req, res) => {
   try {
-    // This function should verify the user's session or JWT token
-    // For now, returning a placeholder response
-    res.status(200).json({ 
-      authenticated: false,
-      message: "Auth status check not yet implemented" 
+    const { email, password, displayName } = req.body;
+    
+    // Validate inputs
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' });
+    }
+    
+    // Create user in Firebase
+    const userRecord = await admin.auth().createUser({
+      email,
+      password,
+      displayName: displayName || email.split('@')[0],
+      emailVerified: true
+    });
+    
+    // Create user in your database
+    const user = await User.create({
+      email,
+      firebaseUid: userRecord.uid,
+      joinDate: new Date(),
+      userRating: 0
+    });
+    
+    return res.status(201).json({
+      message: 'Test user created successfully',
+      uid: userRecord.uid,
+      userID: user.userID
     });
   } catch (error) {
-    console.error("Auth status check error:", error);
-    res.status(500).json({ success: false, message: "Status check failed", error: error.message });
+    console.error('Error creating test user:', error);
+    return res.status(500).json({ message: 'Failed to create test user', error: error.message });
+  }
+};
+
+// Get user data
+exports.getUserData = async (req, res) => {
+  try {
+    // The user object was attached in the middleware
+    const { uid } = req.user;
+    
+    const user = await User.findOne({
+      where: { firebaseUid: uid }
+    });
+    
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    return res.status(200).json({
+      id: user.userID,
+      email: user.email,
+      joinDate: user.joinDate,
+      userRating: user.userRating
+    });
+  } catch (error) {
+    console.error('Error getting user data:', error);
+    return res.status(500).json({ message: 'Failed to get user data', error: error.message });
   }
 };

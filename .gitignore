@@ -1,2 +1,4 @@
 # .gitignore
 node_modules/
+.env
+biterate-firebase-adminsdk-fbsvc-adfd99ec03.json

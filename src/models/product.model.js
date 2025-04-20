@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     brand: DataTypes.STRING,
     category: DataTypes.STRING,
     ingredients: DataTypes.TEXT,
-    createdByUserID: DataTypes.INTEGER
+    createdByUserID: DataTypes.INTEGER,
+    imageUrl: DataTypes.STRING
   });
 };

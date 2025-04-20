@@ -8,17 +8,17 @@ exports.findAll = async (req, res) => {
     const products = await db.sequelize.query(`
       SELECT 
         p.*,
-        COALESCE(AVG(r.productRating), 0) as averageRating,
-        COUNT(r.reviewID) as reviewCount
+        COALESCE(AVG(r."productRating"), 0) as "averageRating",
+        COUNT(r."reviewID") as "reviewCount"
       FROM 
-        Products p
+        "Products" p
       LEFT JOIN 
-        Reviews r ON p.productID = r.productID
+        "Reviews" r ON p."productID" = r."productID"
       GROUP BY 
-        p.productID
+        p."productID"
       ORDER BY 
-        p.name
-    `, { type: db.sequelize.QueryTypes.SELECT });
+        p."name"
+    `, { type: db.sequelize.QueryTypes.SELECT });    
     
     // Format the results to match your existing structure
     const formattedProducts = products.map(product => ({
@@ -42,16 +42,16 @@ exports.findOne = async (req, res) => {
     const productWithRatings = await db.sequelize.query(`
       SELECT 
         p.*,
-        COALESCE(AVG(r.productRating), 0) as averageRating,
-        COUNT(r.reviewID) as reviewCount
+        COALESCE(AVG(r."productRating"), 0) as "averageRating",
+        COUNT(r."reviewID") as "reviewCount"
       FROM 
-        Products p
+        "Products" p
       LEFT JOIN 
-        Reviews r ON p.productID = r.productID
+        "Reviews" r ON p."productID" = r."productID"
       WHERE 
-        p.productID = :productId
+        p."productID" = :productId
       GROUP BY 
-        p.productID
+        p."productID"
     `, { 
       replacements: { productId: req.params.id },
       type: db.sequelize.QueryTypes.SELECT 

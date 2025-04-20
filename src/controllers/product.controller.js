@@ -1,35 +1,34 @@
 const db = require("../models");
-const Product = db.Product;
-const Review = db.Review;
-const User = db.User;
+const { Product, Review, User } = db;
 
 // Get all products
 exports.findAll = async (req, res) => {
   try {
-    const products = await Product.findAll({
-      include: [{
-        model: Review,
-        attributes: ['productRating']
-      }]
-    });
+    // Use a raw SQL query to get products with their ratings
+    const products = await db.sequelize.query(`
+      SELECT 
+        p.*,
+        COALESCE(AVG(r.productRating), 0) as averageRating,
+        COUNT(r.reviewID) as reviewCount
+      FROM 
+        Products p
+      LEFT JOIN 
+        Reviews r ON p.productID = r.productID
+      GROUP BY 
+        p.productID
+      ORDER BY 
+        p.name
+    `, { type: db.sequelize.QueryTypes.SELECT });
     
-    // Calculate average rating for each product
-    const productsWithRating = products.map(product => {
-      const productObj = product.toJSON();
-      
-      let avgRating = 0;
-      if (productObj.Reviews && productObj.Reviews.length > 0) {
-        const sum = productObj.Reviews.reduce((total, review) => total + review.productRating, 0);
-        avgRating = sum / productObj.Reviews.length;
-      }
-      
-      return {
-        ...productObj,
-        avgRating: Number(avgRating.toFixed(1))
-      };
-    });
+    // Format the results to match your existing structure
+    const formattedProducts = products.map(product => ({
+      ...product,
+      averageRating: Number(product.averageRating.toFixed(1)),
+      reviewCount: Number(product.reviewCount),
+      avgRating: Number(product.averageRating.toFixed(1)) // Keep existing property name for backward compatibility
+    }));
     
-    res.status(200).json(productsWithRating);
+    res.status(200).json(formattedProducts);
   } catch (err) {
     console.error("Error fetching products:", err);
     res.status(500).json({ message: err.message });
@@ -39,7 +38,31 @@ exports.findAll = async (req, res) => {
 // Get product by ID
 exports.findOne = async (req, res) => {
   try {
-    const product = await Product.findByPk(req.params.id, {
+    // First get the product with rating info using SQL
+    const productWithRatings = await db.sequelize.query(`
+      SELECT 
+        p.*,
+        COALESCE(AVG(r.productRating), 0) as averageRating,
+        COUNT(r.reviewID) as reviewCount
+      FROM 
+        Products p
+      LEFT JOIN 
+        Reviews r ON p.productID = r.productID
+      WHERE 
+        p.productID = :productId
+      GROUP BY 
+        p.productID
+    `, { 
+      replacements: { productId: req.params.id },
+      type: db.sequelize.QueryTypes.SELECT 
+    });
+    
+    if (productWithRatings.length === 0) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    
+    // Then get the reviews and users for this product
+    const productWithDetails = await Product.findByPk(req.params.id, {
       include: [{
         model: Review,
         include: [{
@@ -49,22 +72,20 @@ exports.findOne = async (req, res) => {
       }]
     });
     
-    if (!product) {
+    if (!productWithDetails) {
       return res.status(404).json({ message: "Product not found" });
     }
     
-    // Calculate average rating
-    const productObj = product.toJSON();
-    let avgRating = 0;
+    // Combine the SQL rating data with the Sequelize detailed data
+    const productObj = productWithDetails.toJSON();
+    const ratingInfo = productWithRatings[0];
     
-    if (productObj.Reviews && productObj.Reviews.length > 0) {
-      const sum = productObj.Reviews.reduce((total, review) => total + review.productRating, 0);
-      avgRating = sum / productObj.Reviews.length;
-    }
-    
+    // Format and return the combined data
     res.status(200).json({
       ...productObj,
-      avgRating: Number(avgRating.toFixed(1))
+      averageRating: Number(ratingInfo.averageRating.toFixed(1)),
+      reviewCount: Number(ratingInfo.reviewCount),
+      avgRating: Number(ratingInfo.averageRating.toFixed(1)) // Keep existing property name for backward compatibility
     });
   } catch (err) {
     console.error("Error fetching product:", err);

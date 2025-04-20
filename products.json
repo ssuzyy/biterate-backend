@@ -1,6 +1,6 @@
 [
     {
-      "SKU": "GF-BRD-001",
+      "SKU": "GF-SNK-001",
       "name": "Entertainment Crackers",
       "brand": "Schaer",
       "category": "Snacks",
@@ -18,7 +18,7 @@
       "imageUrl": "https://www.schaer.com/sites/default/files/styles/packaging/public/2025-01/pwb0026-11_front_artisanbakerwhitebread_400g_usa.png.webp?itok=0-BhoLRI"
     },
     {
-      "SKU": "GF-BRD-003",
+      "SKU": "GF-DST-001",
       "name": "Ladyfingers",
       "brand": "Schaer",
       "category": "Desserts",
@@ -43,5 +43,32 @@
       "ingredients": "Organic brown rice flour, water",
       "createdByUserID": 1,
       "imageUrl": "https://jovialfoods.com/cdn/shop/files/jovial_br_manicotti_silo_1200x1200_3592a54a-9669-4a62-ba25-56220265c24b.png?v=1738785913&width=850"
+    },
+    {
+      "SKU": "GF-BRD-003",
+      "name": "Hawaiian Sweet Rolls",
+      "brand": "Canyon Bakehouse",
+      "category": "Bread",
+      "ingredients": "WATER BROWN RICE FLOUR TAPIOCA FLOUR POTATO STARCH CANE SUGAR CULTURED BROWN RICE FLOUR EXPELLER PRESSED CANOLA OIL CONTAINS 2% OR LESS OF EACH OF THE FOLLOWING: XANTHAN GUM YEAST EGGS SEA SALT BAKING POWDER (SODIUM ACID PYROPHOSPHATE, SODIUM BICARBONATE, POTATO FLOUR, MONOCALCIUM PHOSPHATE) NATURAL FLAVOR ENZYMES",
+      "createdByUserID": 1,
+      "imageUrl": "https://canyonglutenfree.com/cdn/shop/files/hawaiian-sweet-rolls.jpg?v=1702962415"
+    },
+    {
+      "SKU": "GF-DST-002",
+      "name": "Dreamin’ of Chocolate Dark & White Chocolate Layer Cake",
+      "brand": "Inspired by Happiness",
+      "category": "Desserts",
+      "ingredients": "SUGAR, CREAM CHEESE (CREAM, MILK, SKIM MILK, SALT, GUAR GUM, PROPYLENE GLYCOL ALGINATE, CARRAGEENAN, CAROB BEAN GUM, BACTERIAL CULTURE), WATER, CREAM (CREAM, MILK, CARRAGEENAN), LIQUID WHOLE EGG, WHITE CHOCOLATE (SUGAR, COCOA BUTTER, MILK, SOY LECITHIN, NATURAL FLAVOUR), CANOLA OIL, SEMI-SWEET CHOCOLATE (SUGAR, CHOCOLATE LIQUOR, COCOA BUTTER, SOY LECITHIN, NATURAL FLAVOUR), BROWN RICE FLOUR, COCOA, POTATO STARCH, WHITE RICE FLOUR, GLUCOSE, MODIFIED TAPIOCA STARCH, DRIED EGG WHITE, WHITE CHOCOLATEY COATING (SUGAR, MODIFIED PALM KERNEL OIL, WHEY POWDER, SKIM MILK POWDER, SOY LECITHIN, NATURAL FLAVOUR), BAKING POWDER, BAKING SODA, MODIFIED CORN STARCH, BLACKSTRAP MOLASSES, FANCY MOLASSES, XANTHAN GUM, SALT, NATURAL FLAVOUR, SODIUM PHOSPHATE, SODIUM ALGINATE, CORN STARCH.",
+      "createdByUserID": 1,
+      "imageUrl": "http://inspired-by-happiness.com/wp-content/uploads/2016/11/Dreamin-of-Chocolate-Clamshell_CDN-1.jpg"
+    },
+    {
+      "SKU": "GF-SNK-002",
+      "name": "Soft Prezel Nuggets",
+      "brand": "Katz",
+      "category": "Pasta",
+      "ingredients": "GLUTEN FREE FLOUR BLEND (BROWN RICE FLOUR, WHITE RICE FLOUR, TAPIOCA STARCH, CORN STARCH, CHICKPEA FLOUR, POTATO STARCH, POTATO FLOUR), WATER, EGG WHITES, CANOLA OIL, HONEY, SUNFLOWER LECITHIN, XANTHAN GUM, SALT, PSYLLIUM HUSK, BAMBOO FIBER, CELLULOSE, DRY YEAST, APPLE CIDER VINEGAR, NATURAL FLAVOR, BAKING SODA. SALT PACKET: SALT.",
+      "createdByUserID": 1,
+      "imageUrl": "https://katzglutenfree.com/cdn/shop/files/SoftPretzel.png?v=1742926984&width=1920"
     }
   ]

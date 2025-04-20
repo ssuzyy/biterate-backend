@@ -1,0 +1,47 @@
+[
+    {
+      "SKU": "GF-BRD-001",
+      "name": "Entertainment Crackers",
+      "brand": "Schaer",
+      "category": "Snacks",
+      "ingredients": "corn starch , palm fat , corn flour , sugar , soy flour , dextrose , modified corn starch , ammonium bicarbonate , cream of tartar , baking soda , sea salt , soy lecithin , guar gum , citric acid , natural rosemary flavor . Contains: Soy . May Contain: Tree Nuts, Egg.",
+      "createdByUserID": 1,
+      "imageUrl": "https://www.schaer.com/sites/default/files/styles/packaging/public/2024-12/pfp0302-08_front_entertainmentcrackers_175g_usa.png.webp?itok=B3IhgugN"
+    },
+    {
+      "SKU": "GF-BRD-002",
+      "name": "Artisan Baker White Bread",
+      "brand": "Schaer",
+      "category": "Bread",
+      "ingredients": "water , sourdough (rice flour, water) , rice starch , corn starch , modified cellulose , caramelized sugar syrup , psyllium seed husk , sunflower oil , pea protein , yeast , millet flour , citrus fiber , rice flour , quinoa flour , salt , guar gum , corn flour , rice syrup . May Contain: Sesame.",
+      "createdByUserID": 1,
+      "imageUrl": "https://www.schaer.com/sites/default/files/styles/packaging/public/2025-01/pwb0026-11_front_artisanbakerwhitebread_400g_usa.png.webp?itok=0-BhoLRI"
+    },
+    {
+      "SKU": "GF-BRD-003",
+      "name": "Ladyfingers",
+      "brand": "Schaer",
+      "category": "Desserts",
+      "ingredients": "eggs, sugar, corn starch, rice flour, guar gum, natural vanilla flavor (vanilla). Contains: Egg.",
+      "createdByUserID": 1,
+      "imageUrl": "https://www.schaer.com/sites/default/files/styles/packaging/public/2024-07/products_3pfp0019-07_front_ladyfingers_200gusa.png.webp?itok=OUnXjLVV"
+    },
+    {
+      "SKU": "GF-PST-001",
+      "name": "Spaghetti",
+      "brand": "Schaer",
+      "category": "Pasta",
+      "ingredients": "corn flour, rice flour, mono- and diglycerides of fatty acids. Contains: Soy",
+      "createdByUserID": 1,
+      "imageUrl": "https://www.schaer.com/sites/default/files/styles/packaging/public/2025-01/3pfb0205-01_front_spaghetti_12oz_usa.png.webp?itok=Win6v0UI"
+    },
+    {
+      "SKU": "GF-PST-002",
+      "name": "100% Organic Gluten Free Brown Rice Manicotti",
+      "brand": "Jovial",
+      "category": "Pasta",
+      "ingredients": "Organic brown rice flour, water",
+      "createdByUserID": 1,
+      "imageUrl": "https://jovialfoods.com/cdn/shop/files/jovial_br_manicotti_silo_1200x1200_3592a54a-9669-4a62-ba25-56220265c24b.png?v=1738785913&width=850"
+    }
+  ]

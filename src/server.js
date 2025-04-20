@@ -38,7 +38,7 @@ app.get('/api/health', (req, res) => {
 const PORT = process.env.PORT || 8080;
 
 // Sync database, then start server
-db.sequelize.sync({ force: false }) // use force: true ONLY if you want to drop and recreate all tables each time
+db.sequelize.sync({ alter: true }) // use force: true ONLY if you want to drop and recreate all tables each time
   .then(() => {
     console.log('Database synced');
 

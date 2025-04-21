@@ -12,7 +12,7 @@
       "SKU": "GF-BRD-002",
       "name": "Artisan Baker White Bread",
       "brand": "Schaer",
-      "category": "Bread",
+      "category": "Breads",
       "ingredients": "water , sourdough (rice flour, water) , rice starch , corn starch , modified cellulose , caramelized sugar syrup , psyllium seed husk , sunflower oil , pea protein , yeast , millet flour , citrus fiber , rice flour , quinoa flour , salt , guar gum , corn flour , rice syrup . May Contain: Sesame.",
       "createdByUserID": 1,
       "imageUrl": "https://www.schaer.com/sites/default/files/styles/packaging/public/2025-01/pwb0026-11_front_artisanbakerwhitebread_400g_usa.png.webp?itok=0-BhoLRI"
@@ -30,7 +30,7 @@
       "SKU": "GF-PST-001",
       "name": "Spaghetti",
       "brand": "Schaer",
-      "category": "Pasta",
+      "category": "Pastas",
       "ingredients": "corn flour, rice flour, mono- and diglycerides of fatty acids. Contains: Soy",
       "createdByUserID": 1,
       "imageUrl": "https://www.schaer.com/sites/default/files/styles/packaging/public/2025-01/3pfb0205-01_front_spaghetti_12oz_usa.png.webp?itok=Win6v0UI"
@@ -39,7 +39,7 @@
       "SKU": "GF-PST-002",
       "name": "100% Organic Gluten Free Brown Rice Manicotti",
       "brand": "Jovial",
-      "category": "Pasta",
+      "category": "Pastas",
       "ingredients": "Organic brown rice flour, water",
       "createdByUserID": 1,
       "imageUrl": "https://jovialfoods.com/cdn/shop/files/jovial_br_manicotti_silo_1200x1200_3592a54a-9669-4a62-ba25-56220265c24b.png?v=1738785913&width=850"
@@ -48,7 +48,7 @@
       "SKU": "GF-BRD-003",
       "name": "Hawaiian Sweet Rolls",
       "brand": "Canyon Bakehouse",
-      "category": "Bread",
+      "category": "Breads",
       "ingredients": "WATER BROWN RICE FLOUR TAPIOCA FLOUR POTATO STARCH CANE SUGAR CULTURED BROWN RICE FLOUR EXPELLER PRESSED CANOLA OIL CONTAINS 2% OR LESS OF EACH OF THE FOLLOWING: XANTHAN GUM YEAST EGGS SEA SALT BAKING POWDER (SODIUM ACID PYROPHOSPHATE, SODIUM BICARBONATE, POTATO FLOUR, MONOCALCIUM PHOSPHATE) NATURAL FLAVOR ENZYMES",
       "createdByUserID": 1,
       "imageUrl": "https://canyonglutenfree.com/cdn/shop/files/hawaiian-sweet-rolls.jpg?v=1702962415"
@@ -66,9 +66,36 @@
       "SKU": "GF-SNK-002",
       "name": "Soft Prezel Nuggets",
       "brand": "Katz",
-      "category": "Pasta",
+      "category": "Pastas",
       "ingredients": "GLUTEN FREE FLOUR BLEND (BROWN RICE FLOUR, WHITE RICE FLOUR, TAPIOCA STARCH, CORN STARCH, CHICKPEA FLOUR, POTATO STARCH, POTATO FLOUR), WATER, EGG WHITES, CANOLA OIL, HONEY, SUNFLOWER LECITHIN, XANTHAN GUM, SALT, PSYLLIUM HUSK, BAMBOO FIBER, CELLULOSE, DRY YEAST, APPLE CIDER VINEGAR, NATURAL FLAVOR, BAKING SODA. SALT PACKET: SALT.",
       "createdByUserID": 1,
       "imageUrl": "https://katzglutenfree.com/cdn/shop/files/SoftPretzel.png?v=1742926984&width=1920"
+    },
+    {
+      "SKU": "GF-SNK-004",
+      "name": "Pork Potstickers",
+      "brand": "Feel Good Foods",
+      "category": "Snacks",
+      "ingredients": "Cabbage, Pork, Water, Rice Flour, Tapioca Starch, Contains 2% or less of: Scallion, Sesame Oil, Canola Oil, Sugar, Salt, Garlic, Ginger, Konjac Flour, Xanthan Gum, Black Pepper Dipping Sauce: Water, Tamari Soy Sauce (Water, Soybeans, Salt, Sugar, Corn Starch), Sugar, Distilled Vinegar, Ginger Puree (Ginger, Water), Garlic Puree, Spice. Contains: Soy, Sesame",
+      "createdByUserID": 1,
+      "imageUrl": "https://feel-good-foods.com/wp-content/uploads/2016/12/Artboard-39-100.jpg"
+    },
+    {
+      "SKU": "GF-BRD-004",
+      "name": "Canyon Bakehouse Bread",
+      "brand": "Canyon Bakehouses",
+      "category": "Breadds",
+      "ingredients": "WATER, BROWN RICE FLOUR, TAPIOCA FLOUR, WHOLE GRAIN SORGHUM FLOUR, ORGANIC AGAVE SYRUP, CANE SUGAR, EXTRA VIRGIN OLIVE OIL, CULTURED BROWN RICE FLOUR, CONTAINS 2% OR LESS OF EACH OF THE FOLLOWING: XANTHAN GUM, EGG WHITES, EGGS, YEAST, SEA SALT, ENZYMES.",
+      "createdByUserID": 1,
+      "imageUrl": "https://canyonglutenfree.com/cdn/shop/files/mountain-white.png?v=1702962482"
+    },
+    {
+      "SKU": "GF-PST-003",
+      "name": "Barilla Gluten-Free Pasta",
+      "brand": "Barilla",
+      "category": "Pastas",
+      "ingredients": "CORN FLOUR, RICE FLOUR, MONO AND DIGLYCERIDES",
+      "createdByUserID": 1,
+      "imageUrl": "https://images.ctfassets.net/43ibah8kumsy/4kMKc15AoldNje9rdxk3FG/49c10c815110e53cf6129639066efb20/Barilla_Gluten_Free_Penne_Pasta_2024.png?w=1600&h=1600&fm=webp&q=50"
     }
   ]
